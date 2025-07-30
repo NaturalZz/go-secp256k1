@@ -180,7 +180,6 @@ func (pk *PublicKey) StringAMAX() string {
 	hash := ripemd160.New()
 	hash.Write(pk.Data[:])
 	digest := hash.Sum(nil)
-
 	pub := pk.Data[:]
 	pub = append(pub, digest[:4]...)
 	return "AM" + base58.Encode(pub)
