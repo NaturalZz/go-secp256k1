@@ -5,6 +5,7 @@ import (
 	"log"
 	"testing"
 	"time"
+	"fmt"
 )
 
 func TestA(t *testing.T) {
@@ -63,7 +64,6 @@ func TestA(t *testing.T) {
 func TestB(t *testing.T) {
 	Init()
 	strPubEos := "EOS6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpZasW9m"
-	strPubAmax := "AM74onW6e5R5Z5LZpodVvBpUwijCHAoVD1hbCrskRSHVcAvT5cvi"
 	strPub := "PUB_K1_6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpbfUBbq"
 	pub, err := NewPublicKeyFromBase58(strPub)
 	if err != nil {
@@ -77,4 +77,24 @@ func TestB(t *testing.T) {
 	if strPub != pub.String() {
 		panic("error")
 	}
+
+}
+
+func TestC(t *testing.T) {
+	Init()
+	strPubEos := "EOS6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpZasW9m"
+	strPub := "PUB_K1_6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpbfUBbq"
+	pub, err := NewPublicKeyFromBase58(strPub)
+	if err != nil {
+		panic(err)
+	}
+
+	if strPubEos != pub.StringEOS() {
+		panic("error")
+	}
+
+	if strPub != pub.String() {
+		panic("error")
+	}
+
 }

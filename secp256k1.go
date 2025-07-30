@@ -126,7 +126,6 @@ import (
 	"errors"
 	"strings"
 	"unsafe"
-
 	"crypto/sha256"
 
 	"github.com/akamensky/base58"
@@ -218,7 +217,7 @@ func NewPublicKeyFromBase58(strPub string) (*PublicKey, error) {
 		_pub := &PublicKey{}
 		copy(_pub.Data[:], pub[:])
 		return _pub, nil
-	} else if strings.HasPrefix(strPub, "AM"){
+	} else if strings.HasPrefix(strPub, "AM") {
 		strPub = strPub[2:]
 		pub, err := base58.Decode(strPub)
 		if err != nil {
