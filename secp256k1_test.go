@@ -63,6 +63,7 @@ func TestA(t *testing.T) {
 func TestB(t *testing.T) {
 	Init()
 	strPubEos := "EOS6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpZasW9m"
+	strPubAmax := "AM74onW6e5R5Z5LZpodVvBpUwijCHAoVD1hbCrskRSHVcAvT5cvi"
 	strPub := "PUB_K1_6t63xDyTbP8ncvZ9gjhkcrJbD1eueCfaNDAH4LV95XkpbfUBbq"
 	pub, err := NewPublicKeyFromBase58(strPub)
 	if err != nil {

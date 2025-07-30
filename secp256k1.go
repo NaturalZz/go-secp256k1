@@ -218,6 +218,27 @@ func NewPublicKeyFromBase58(strPub string) (*PublicKey, error) {
 		_pub := &PublicKey{}
 		copy(_pub.Data[:], pub[:])
 		return _pub, nil
+	} else if strings.HasPrefix(strPub, "AM"){
+		strPub = strPub[2:]
+		pub, err := base58.Decode(strPub)
+		if err != nil {
+			return nil, err
+		}
+
+		if len(pub) != 37 {
+			return nil, errors.New("Invalid public key length")
+		}
+
+		hash := ripemd160.New()
+		hash.Write(pub[:33])
+		digest := hash.Sum(nil)
+		if !bytes.Equal(pub[33:], digest[:4]) {
+			return nil, errors.New("Invalid public key")
+		}
+
+		_pub := &PublicKey{}
+		copy(_pub.Data[:], pub[:])
+		return _pub, nil
 	} else if strings.HasPrefix(strPub, "PUB_K1_") {
 		strPub = strPub[len("PUB_K1_"):]
 		pub, err := base58.Decode(strPub)
